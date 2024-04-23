@@ -15,7 +15,7 @@ def model_inversion_stealing(clone_model, split_layer, target, input_size,
         for input_iter in range(input_iters):
             input_opt.zero_grad()
             pred = clone_model(x_pred, end=split_layer)
-            loss = mse(pred, target) + lambda_tv*TV(x_pred) + lambda_l2*l2loss(x_pred)
+            loss = mse(pred, target) + lambda_l2*l2loss(x_pred) + lambda_tv*TV(x_pred)
             loss.backward(retain_graph=True)
             input_opt.step()
         for model_iter in range(model_iters):

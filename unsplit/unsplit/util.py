@@ -69,11 +69,17 @@ def get_test_score(m1, m2, dataset, split=0):
     return 100 * score / len(imageloader)
 
 
-def display_imagelist(images, height, width):
+def display_imagelist(images, height, width, count=1):
     fig, ax = plt.subplots(1, len(images))
-    for index, image in enumerate(images):
-        ax[index].axis('off')
-        ax[index].imshow(image.cpu().detach().reshape(height, width))
+    if count == 1:
+        for index, image in enumerate(images):
+            ax[index].axis('off')
+            ax[index].imshow(image.cpu().detach().reshape(height, width))
+    else:
+        for id, nested in enumerate(images):
+            for index, image in enumerate(nested):
+                ax[id, index].axis('off')
+                ax[id, index].imshow(image.cpu().detach().reshape(height, width))
     plt.show()
 
 
