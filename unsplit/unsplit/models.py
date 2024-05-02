@@ -13,31 +13,31 @@ class MnistNet(nn.Module):
         self.layers = collections.OrderedDict()
 
         self.conv1 = nn.Conv2d(in_channels=n_channels, out_channels=8, kernel_size=5)
-        self.features.append(self.conv1)
+        self.features.append(self.conv1) #0
         self.layers["conv1"] = self.conv1
 
         self.ReLU1 = nn.ReLU(False)
-        self.features.append(self.ReLU1)
+        self.features.append(self.ReLU1) #1
         self.layers["ReLU1"] = self.ReLU1
 
         self.pool1 = nn.MaxPool2d(2, 2)
-        self.features.append(self.pool1)
+        self.features.append(self.pool1) #2
         self.layers["pool1"] = self.pool1
 
         self.conv2 = nn.Conv2d(in_channels=8, out_channels=16, kernel_size=5)
-        self.features.append(self.conv2)
+        self.features.append(self.conv2) #3
         self.layers["conv2"] = self.conv2
 
         self.ReLU2 = nn.ReLU(False)
-        self.features.append(self.ReLU2)
+        self.features.append(self.ReLU2) #4
         self.layers["ReLU2"] = self.ReLU2
 
         self.pool2 = nn.MaxPool2d(2, 2)
-        self.features.append(self.pool2)
+        self.features.append(self.pool2) #5
         self.layers["pool2"] = self.pool2
 
         self.feature_dims = 16 * 4 * 4
-        self.fc1 = nn.Linear(self.feature_dims, 120)
+        self.fc1 = nn.Linear(self.feature_dims, 120) #start=6
         self.classifier.append(self.fc1)
         self.layers["fc1"] = self.fc1
 
